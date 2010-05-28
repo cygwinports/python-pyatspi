@@ -1,0 +1,2 @@
+ORIG_PN="pyatspi"
+inherit pygtk
