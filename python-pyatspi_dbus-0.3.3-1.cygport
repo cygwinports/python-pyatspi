@@ -1,0 +1,5 @@
+ORIG_PN="pyatspi"
+inherit pygtk
+
+
+CYGCONF_ARGS="--enable-relocate"

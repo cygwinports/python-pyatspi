@@ -1,4 +1,4 @@
-category: Python Gnome
-requires: at-spi2-core python python-dbus python-gobject2.0
+category: Accessibility Python Gnome
+requires: at-spi2-core python python-dbus python-gconf2 python-gobject2.0
 sdesc: "Python AT-SPI/D-Bus bindings"
 ldesc: "Python AT-SPI/D-Bus bindings"
