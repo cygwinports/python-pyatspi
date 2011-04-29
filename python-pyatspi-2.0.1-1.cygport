@@ -2,4 +2,6 @@ ORIG_PN="pyatspi"
 inherit pygtk
 
 
+DIFF_EXCLUDES="testrunner"
+
 CYGCONF_ARGS="--disable-relocate"
