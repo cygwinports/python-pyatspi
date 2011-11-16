@@ -1,0 +1,8 @@
+ORIG_PN="pyatspi"
+inherit pygtk
+
+
+DEPEND="pkgconfig(pygobject-3.0)
+	python"
+
+DIFF_EXCLUDES="testrunner"
