@@ -1,0 +1,39 @@
+ORIG_PN="pyatspi"
+inherit python python3 gnome.org
+
+NAME="python-pyatspi"
+VERSION=2.6.0
+RELEASE=1
+CATEGORY="Python"
+SUMMARY="Python AT-SPI/D-Bus bindings"
+DESCRIPTION="Python AT-SPI/D-Bus bindings"
+
+DEPEND="pkgconfig(pygobject-3.0)"
+
+PKG_NAMES="python-pyatspi python-pyatspi-common python3-pyatspi"
+python_pyatspi_REQUIRES="${NAME}-common girepository-Atspi2.0"
+python_pyatspi_CONTENTS=${PYTHON_SITELIB#/}
+python3_pyatspi_REQUIRES="${NAME}-common girepository-Atspi2.0"
+python3_pyatspi_CONTENTS=${PYTHON3_SITELIB#/}
+python_pyatspi_common_CONTENTS="usr/share/doc/"
+
+src_compile() {
+	cd ${S}
+	cygautoreconf
+	mkdir -p ${B}/py{2,3}
+	cd ${B}/py2
+	cygconf PYTHON=${PYTHON}
+	cygmake
+	cd ${B}/py3
+	cygconf PYTHON=${PYTHON3}
+	cygmake
+}
+
+src_install() {
+	cd ${B}/py3
+	cyginstall
+	cd ${B}/py2
+	cyginstall
+}
+
+DIFF_EXCLUDES="testrunner"

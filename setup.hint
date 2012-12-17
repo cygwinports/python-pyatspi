@@ -1,4 +1,0 @@
-category: Accessibility Python Gnome
-requires: at-spi2-core python python-dbus python-gi girepository-Atspi2.0 girepository-GLib2.0
-sdesc: "Python AT-SPI/D-Bus bindings"
-ldesc: "Python AT-SPI/D-Bus bindings"
