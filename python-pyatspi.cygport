@@ -2,7 +2,7 @@ ORIG_PN="pyatspi"
 inherit python2 python3 gnome.org
 
 NAME="python-pyatspi"
-VERSION=2.20.3
+VERSION=2.24.0
 RELEASE=1
 CATEGORY="Python"
 SUMMARY="Python AT-SPI/D-Bus bindings"
