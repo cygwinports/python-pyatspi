@@ -1,42 +1,33 @@
 ORIG_PN="pyatspi"
-inherit python2 python3 gnome.org
+inherit python-wheel gnome.org
 
 NAME="python-pyatspi"
 VERSION=2.26.0
-RELEASE=1
+RELEASE=2
 CATEGORY="Python"
 SUMMARY="Python AT-SPI/D-Bus bindings"
 DESCRIPTION="Python AT-SPI/D-Bus bindings"
+
+SRC_URI+=" setup.py"
+PATCH_URI="https://gitlab.gnome.org/GNOME/pyatspi2/commit/b73dabbd1025ba1be332cd6f11cca5a5d49eeecf.patch"
 
 ARCH=noarch
 
 DEPEND="pkgconfig(pygobject-3.0)"
 
-PKG_NAMES="python2-pyatspi python-pyatspi-common python3-pyatspi"
-python2_pyatspi_REQUIRES="${NAME}-common girepository-Atspi2.0"
-python2_pyatspi_OBSOLETES=${NAME}
-python2_pyatspi_CONTENTS=${PYTHON2_SITELIB#/}
-python3_pyatspi_REQUIRES="${NAME}-common girepository-Atspi2.0"
-python3_pyatspi_CONTENTS=${PYTHON3_SITELIB#/}
-python_pyatspi_common_CONTENTS="usr/share/doc/"
+python27_pyatspi_REQUIRES="girepository-Atspi2.0"
+python36_pyatspi_REQUIRES="girepository-Atspi2.0"
+python37_pyatspi_REQUIRES="girepository-Atspi2.0"
+PKG_NAMES+=" python-pyatspi-common"
+python_pyatspi_common_CATEGORY="_obsolete"
+PKG_IGNORE="usr/share/doc/python-pyatspi-common/"
 
 src_compile() {
 	cd ${S}
 	cygautoreconf
-	mkdir -p ${B}/py{2,3}
-	cd ${B}/py2
-	cygconf PYTHON=${PYTHON2}
-	cygmake
-	cd ${B}/py3
-	cygconf PYTHON=${PYTHON3}
-	cygmake
-}
-
-src_install() {
-	cd ${B}/py3
-	cyginstall
-	cd ${B}/py2
-	cyginstall
+	cd ${B}
+	lndirs
+	python_wheel_compile
 }
 
 DIFF_EXCLUDES="testrunner"
